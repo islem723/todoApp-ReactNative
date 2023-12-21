@@ -10,7 +10,7 @@ const categoryRoutes = express.Router();
 
 categoryRoutes.route("/create").post(createCategory);
 categoryRoutes.route("/").get(getAllCategories);
-categoryRoutes.route("/delete/:id").post(deleteCategory);
+categoryRoutes.route("/delete/:id").delete(deleteCategory);
+categoryRoutes.route("/update/:id").put(upateCategory);
 
-categoryRoutes.route("/update").put(upateCategory);
 export default categoryRoutes;

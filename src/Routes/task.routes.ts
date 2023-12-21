@@ -1,7 +1,22 @@
 import express from "express";
-import { createTask, getAllTasks } from "../Controllers/taskC";
+import {
+  createTask,
+  getAllTasksOfUser,
+  UpdateTaskStatus,
+  getAllTaskByCategory,
+  getAllCompletedTasks,
+  getTasksForToday,
+  editTask,
+  deletetask,
+} from "../Controllers/taskC";
 
 const taskRoutes = express.Router();
-
-taskRoutes.route("/create").post(createTask);
-taskRoutes.route("/alltasks").get(getAllTasks);
+taskRoutes.route("/completed").get(getAllCompletedTasks); // *
+taskRoutes.route("/today").get(getTasksForToday);
+taskRoutes.route("/create").post(createTask); // *
+taskRoutes.route("/edit/:id").put(editTask); // *
+taskRoutes.route("/alltasksBycategory/:id").get(getAllTaskByCategory);
+taskRoutes.route("/alltasks").get(getAllTasksOfUser); // *
+taskRoutes.route("/deletetask/:id").delete(deletetask);
+taskRoutes.route("/update-status/:id").put(UpdateTaskStatus);
+export default taskRoutes;

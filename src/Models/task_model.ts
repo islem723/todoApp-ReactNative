@@ -12,7 +12,7 @@ export default model(
       category: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: "Category",
+        ref: "category",
       },
       name: {
         type: String,
@@ -28,7 +28,7 @@ export default model(
         default: false,
       },
       date: {
-        type: String,
+        type: Date,
         required: false,
       },
     },

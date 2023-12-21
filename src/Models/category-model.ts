@@ -13,7 +13,7 @@ export default mongoose.model(
       default: true,
     },
     color: {
-      type: Boolean,
+      type: String,
       required: false,
       default: true,
     },
