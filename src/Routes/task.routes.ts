@@ -1,5 +1,5 @@
 import express from "express";
-import { createTask, getAllTasks } from "../Controllers/taskc";
+import { createTask, getAllTasks } from "../Controllers/taskC";
 
 const taskRoutes = express.Router();
 
