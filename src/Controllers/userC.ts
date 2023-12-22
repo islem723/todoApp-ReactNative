@@ -28,7 +28,7 @@ export async function createUser(req: Request, res: Response) {
       return res.status(400).send({ error: "Could not create user" });
     }
 
-    res.status(201).send({ message: "UserModel created successfully" });
+    res.status(201).send({ user: created });
   } catch (error) {
     return res.status(500).send({ error: error.toString() });
   }
