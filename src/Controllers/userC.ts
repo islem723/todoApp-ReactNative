@@ -5,7 +5,6 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { HASH_ROUNDS, JWT_EXPIRATION, JWT_SECRET } from "../config/env";
 import IUser from "../types";
-
 export async function createUser(req: Request, res: Response) {
   try {
     const { name, email, password }: IUser = req.body;
@@ -13,21 +12,27 @@ export async function createUser(req: Request, res: Response) {
     if (user) {
       return res.status(400).send({ error: "Email already used" });
     }
-    const hashedPassword = await bcrypt.hash(password, HASH_ROUNDS);
+
+    const hashedPassword = await bcrypt.hash(
+      password,
+      await bcrypt.genSalt(10)
+    );
+
     const created = await UserModel.create({
       name,
       email,
       password: hashedPassword,
     });
+
     if (!created) {
       return res.status(400).send({ error: "Could not create user" });
     }
+
     res.status(201).send({ message: "UserModel created successfully" });
   } catch (error) {
     return res.status(500).send({ error: error.toString() });
   }
 }
-
 //login
 
 export async function login(req: Request, res: Response) {

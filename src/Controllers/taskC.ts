@@ -143,3 +143,15 @@ export async function editTask(req: Request, res: Response) {
     res.send({ error: "error while updating the task" });
   }
 }
+export async function getTasksByDateAndUserID(req: Request, res: Response) {
+  const { startAt } = req.body;
+  try {
+    const tasks = await TaskModel.find({
+      createdAt: { $gte: new Date(startAt), $lt: new Date() },
+    }).sort([["createdAt", "descending"]]);
+    res.send(tasks);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Server error" });
+  }
+}

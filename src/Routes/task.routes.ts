@@ -5,14 +5,14 @@ import {
   UpdateTaskStatus,
   getAllTaskByCategory,
   getAllCompletedTasks,
-  getTasksForToday,
+  getTasksByDateAndUserID,
   editTask,
   deletetask,
 } from "../Controllers/taskC";
 
 const taskRoutes = express.Router();
 taskRoutes.route("/completed").get(getAllCompletedTasks); // *
-taskRoutes.route("/today").get(getTasksForToday);
+taskRoutes.route("/today").get(getTasksByDateAndUserID);
 taskRoutes.route("/create").post(createTask); // *
 taskRoutes.route("/edit/:id").put(editTask); // *
 taskRoutes.route("/alltasksBycategory/:id").get(getAllTaskByCategory);
